@@ -73,6 +73,9 @@
                 <div id="options-container" class="space-y-3"></div>
                 <div id="hint-container" class="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg text-yellow-800 hidden"></div>
             </div>
+             <div id="multi-answer-controls" class="mt-6 text-center hidden">
+                <button id="check-answer-btn" class="bg-indigo-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-indigo-700 transition-colors duration-300">Check My Answer</button>
+            </div>
              <div id="feedback-section" class="mt-6 text-center hidden">
                 <p id="feedback-text" class="text-2xl font-bold mb-4"></p>
                 <button id="next-btn" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-700 transition-colors duration-300">Next Question</button>
@@ -257,6 +260,8 @@
         const feedbackSection = document.getElementById('feedback-section');
         const feedbackText = document.getElementById('feedback-text');
         const nextBtn = document.getElementById('next-btn');
+        const multiAnswerControls = document.getElementById('multi-answer-controls');
+        const checkAnswerBtn = document.getElementById('check-answer-btn');
 
 
 
@@ -275,6 +280,7 @@
              currentQuestionIndex++;
              displayQuestion();
         });
+        checkAnswerBtn.addEventListener('click', handleMultipleAnswer);
         restartBtn.addEventListener('click', () => {
              // Reset state and go back to start screen
             resultScreen.classList.add('hidden');
@@ -342,9 +348,11 @@ Options: ${currentQuestion.options.join(', ')}`;
             aiFeedbackContainer.innerHTML = '';
 
 
-            const incorrectList = incorrectQuestions.map(q => 
-                `- Question: "${q.text}"\n  Your Answer: "${q.options[q.userAnswer[0]]}"\n  Correct Answer: "${q.options[q.correct[0]]}"`
-            ).join('\n');
+            const incorrectList = incorrectQuestions.map(q => {
+                const userAnswersText = q.userAnswer.map(i => q.options[i]).join(', ') || "None";
+                const correctAnswersText = q.correct.map(i => q.options[i]).join(', ');
+                return `- Question: "${q.text}"\n  Your Answer(s): "${userAnswersText}"\n  Correct Answer(s): "${correctAnswersText}"`;
+            }).join('\n');
 
             const prompt = `You are a cybersecurity tutor analyzing a student's quiz results.
 The student scored ${scoreEl.textContent} out of ${shuffledQuestions.length}.
@@ -392,6 +400,7 @@ Based on this, provide a brief, encouraging paragraph summarizing their performa
             
             feedbackSection.classList.add('hidden');
             optionsContainerEl.classList.remove('disabled-options');
+            multiAnswerControls.classList.add('hidden');
 
 
             const question = shuffledQuestions[currentQuestionIndex];
@@ -416,9 +425,103 @@ Based on this, provide a brief, encouraging paragraph summarizing their performa
                         ${option}
                     </label>
                 `;
-                optionEl.querySelector('label').addEventListener('click', () => checkAnswer(index));
+                if (question.type === 'single') {
+                    optionEl.querySelector('label').addEventListener('click', () => handleSingleAnswer(index));
+                }
                 optionsContainerEl.appendChild(optionEl);
             });
+
+            if (question.type === 'multiple') {
+                multiAnswerControls.classList.remove('hidden');
+            }
+        }
+
+        function handleSingleAnswer(selectedIndex) {
+            saveAnswer();
+            optionsContainerEl.classList.add('disabled-options');
+            const question = shuffledQuestions[currentQuestionIndex];
+            const correctAnswers = question.correct;
+            const isCorrect = correctAnswers.includes(selectedIndex);
+
+            const selectedLabel = document.querySelector(`label[for="q${currentQuestionIndex}_option${selectedIndex}"]`);
+            
+            if (isCorrect) {
+                feedbackText.textContent = "Correct!";
+                feedbackText.className = "text-2xl font-bold mb-4 text-green-600";
+            } else {
+                feedbackText.textContent = "Incorrect!";
+                feedbackText.className = "text-2xl font-bold mb-4 text-red-600";
+                if(selectedLabel) selectedLabel.classList.add('incorrect-answer');
+            }
+
+            // Highlight all correct answers
+            correctAnswers.forEach(correctIndex => {
+                 const correctLabel = document.querySelector(`label[for="q${currentQuestionIndex}_option${correctIndex}"]`);
+                 if(correctLabel) correctLabel.classList.add('correct-answer');
+            });
+
+
+            if (currentQuestionIndex === shuffledQuestions.length - 1) {
+                nextBtn.textContent = 'Finish Quiz';
+            } else {
+                nextBtn.textContent = 'Next Question';
+            }
+
+            feedbackSection.classList.remove('hidden');
+        }
+
+        function handleMultipleAnswer() {
+            saveAnswer();
+            optionsContainerEl.classList.add('disabled-options');
+            multiAnswerControls.classList.add('hidden');
+
+            const question = shuffledQuestions[currentQuestionIndex];
+            const correctAnswers = [...question.correct].sort();
+            const selectedAnswers = userAnswers[currentQuestionIndex] ? [...userAnswers[currentQuestionIndex]].sort() : [];
+            
+            const isCorrect = JSON.stringify(correctAnswers) === JSON.stringify(selectedAnswers);
+
+            if (isCorrect) {
+                feedbackText.textContent = "Correct!";
+                feedbackText.className = "text-2xl font-bold mb-4 text-green-600";
+            } else {
+                feedbackText.textContent = "Incorrect!";
+                feedbackText.className = "text-2xl font-bold mb-4 text-red-600";
+                
+                question.options.forEach((opt, index) => {
+                    const label = document.querySelector(`label[for="q${currentQuestionIndex}_option${index}"]`);
+                    const wasSelected = selectedAnswers.includes(index);
+                    const isCorrectOption = correctAnswers.includes(index);
+                    if (wasSelected && !isCorrectOption) {
+                        label.classList.add('incorrect-answer');
+                    }
+                });
+            }
+
+            correctAnswers.forEach(correctIndex => {
+                 const correctLabel = document.querySelector(`label[for="q${currentQuestionIndex}_option${correctIndex}"]`);
+                 if(correctLabel) correctLabel.classList.add('correct-answer');
+            });
+
+            if (currentQuestionIndex === shuffledQuestions.length - 1) {
+                nextBtn.textContent = 'Finish Quiz';
+            } else {
+                nextBtn.textContent = 'Next Question';
+            }
+            feedbackSection.classList.remove('hidden');
+        }
+        
+        function saveAnswer() {
+            const question = shuffledQuestions[currentQuestionIndex];
+            if (question.type === 'single') {
+                const selectedOption = document.querySelector(`input[name="question${currentQuestionIndex}"]:checked`);
+                if (selectedOption) {
+                    userAnswers[currentQuestionIndex] = [parseInt(selectedOption.value)];
+                }
+            } else {
+                const selectedOptions = document.querySelectorAll(`input[name="question${currentQuestionIndex}"]:checked`);
+                userAnswers[currentQuestionIndex] = Array.from(selectedOptions).map(el => parseInt(el.value));
+            }
         }
 
         function checkAnswer(selectedIndex) {
@@ -486,8 +589,11 @@ Based on this, provide a brief, encouraging paragraph summarizing their performa
                 const answers = userAnswers[i] || [];
                 const correctAnswers = question.correct;
                 
-                // Direct comparison for single choice answers
-                if (answers.length > 0 && correctAnswers.includes(answers[0])) {
+                // Sort for consistent comparison
+                const sortedAnswers = [...answers].sort();
+                const sortedCorrectAnswers = [...correctAnswers].sort();
+                
+                if (JSON.stringify(sortedAnswers) === JSON.stringify(sortedCorrectAnswers)) {
                     score++;
                 } else if(userAnswers[i] !== undefined) { // only count answered questions as incorrect
                     const incorrectQ = {...question};
@@ -507,4 +613,3 @@ Based on this, provide a brief, encouraging paragraph summarizing their performa
     </script>
 </body>
 </html>
-

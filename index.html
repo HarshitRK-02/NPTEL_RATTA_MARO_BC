@@ -13,12 +13,22 @@
         .quiz-option {
             transition: all 0.2s ease-in-out;
         }
-        .quiz-option:hover {
+        .quiz-option label:hover {
             background-color: #f0f9ff; /* light blue-50 */
         }
-        .quiz-option input:checked + label {
-            background-color: #e0f2fe; /* light blue-100 */
-            border-color: #38bdf8; /* light blue-400 */
+        .correct-answer {
+            background-color: #dcfce7 !important; /* green-100 */
+            border-color: #4ade80 !important; /* green-400 */
+            color: #15803d; /* green-800 */
+        }
+        .incorrect-answer {
+            background-color: #fee2e2 !important; /* red-100 */
+            border-color: #f87171 !important; /* red-400 */
+            color: #b91c1c; /* red-800 */
+        }
+        .disabled-options .quiz-option {
+            pointer-events: none;
+            opacity: 0.9;
         }
         .spinner {
             border: 4px solid rgba(0, 0, 0, 0.1);
@@ -63,12 +73,16 @@
                 <div id="options-container" class="space-y-3"></div>
                 <div id="hint-container" class="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg text-yellow-800 hidden"></div>
             </div>
+             <div id="feedback-section" class="mt-6 text-center hidden">
+                <p id="feedback-text" class="text-2xl font-bold mb-4"></p>
+                <button id="next-btn" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-700 transition-colors duration-300">Next Question</button>
+            </div>
             <div class="flex justify-between items-center mt-8">
                 <button id="hint-btn" class="bg-yellow-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-yellow-600 transition-colors duration-300 flex items-center gap-2">
                     <span id="hint-btn-text">Get a Hint ✨</span>
                     <div id="hint-spinner" class="spinner hidden"></div>
                 </button>
-                <button id="submit-btn" class="bg-green-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-green-700 transition-colors duration-300">Submit</button>
+                <button id="submit-btn" class="bg-green-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-green-700 transition-colors duration-300 hidden">Submit</button>
             </div>
         </div>
 
@@ -240,6 +254,10 @@
         const feedbackSpinner = document.getElementById('feedback-spinner');
         const hintBtnText = document.getElementById('hint-btn-text');
         const feedbackBtnText = document.getElementById('feedback-btn-text');
+        const feedbackSection = document.getElementById('feedback-section');
+        const feedbackText = document.getElementById('feedback-text');
+        const nextBtn = document.getElementById('next-btn');
+
 
 
 
@@ -252,7 +270,11 @@
 
         // --- Event Listeners ---
         startBtn.addEventListener('click', startQuiz);
-        submitBtn.addEventListener('click', endQuiz);
+        submitBtn.addEventListener('click', endQuiz); // This is now a fallback
+        nextBtn.addEventListener('click', () => {
+             currentQuestionIndex++;
+             displayQuestion();
+        });
         restartBtn.addEventListener('click', () => {
              // Reset state and go back to start screen
             resultScreen.classList.add('hidden');
@@ -367,6 +389,10 @@ Based on this, provide a brief, encouraging paragraph summarizing their performa
                 endQuiz();
                 return;
             }
+            
+            feedbackSection.classList.add('hidden');
+            optionsContainerEl.classList.remove('disabled-options');
+
 
             const question = shuffledQuestions[currentQuestionIndex];
             questionNumberEl.textContent = currentQuestionIndex + 1;
@@ -390,35 +416,48 @@ Based on this, provide a brief, encouraging paragraph summarizing their performa
                         ${option}
                     </label>
                 `;
+                optionEl.querySelector('label').addEventListener('click', () => checkAnswer(index));
                 optionsContainerEl.appendChild(optionEl);
             });
-            
-             if(inputType === 'radio') {
-                document.querySelectorAll(`input[name="question${currentQuestionIndex}"]`).forEach(input => {
-                    input.addEventListener('change', handleAnswerAndNext);
-                });
-            }
-        }
-        
-        function handleAnswerAndNext() {
-            saveAnswer();
-            setTimeout(() => {
-                currentQuestionIndex++;
-                displayQuestion();
-            }, 300);
         }
 
-        function saveAnswer() {
+        function checkAnswer(selectedIndex) {
+            saveAnswer(selectedIndex);
+            optionsContainerEl.classList.add('disabled-options');
             const question = shuffledQuestions[currentQuestionIndex];
-            if (question.type === 'single') {
-                const selectedOption = document.querySelector(`input[name="question${currentQuestionIndex}"]:checked`);
-                if (selectedOption) {
-                    userAnswers[currentQuestionIndex] = [parseInt(selectedOption.value)];
-                }
+            const correctAnswers = question.correct;
+            const isCorrect = correctAnswers.includes(selectedIndex);
+
+            const selectedLabel = document.querySelector(`label[for="q${currentQuestionIndex}_option${selectedIndex}"]`);
+            
+            if (isCorrect) {
+                feedbackText.textContent = "Correct!";
+                feedbackText.className = "text-2xl font-bold mb-4 text-green-600";
             } else {
-                const selectedOptions = document.querySelectorAll(`input[name="question${currentQuestionIndex}"]:checked`);
-                userAnswers[currentQuestionIndex] = Array.from(selectedOptions).map(el => parseInt(el.value));
+                feedbackText.textContent = "Incorrect!";
+                feedbackText.className = "text-2xl font-bold mb-4 text-red-600";
+                if(selectedLabel) selectedLabel.classList.add('incorrect-answer');
             }
+
+            // Highlight all correct answers
+            correctAnswers.forEach(correctIndex => {
+                 const correctLabel = document.querySelector(`label[for="q${currentQuestionIndex}_option${correctIndex}"]`);
+                 if(correctLabel) correctLabel.classList.add('correct-answer');
+            });
+
+
+            if (currentQuestionIndex === shuffledQuestions.length - 1) {
+                nextBtn.textContent = 'Finish Quiz';
+            } else {
+                nextBtn.textContent = 'Next Question';
+            }
+
+            feedbackSection.classList.remove('hidden');
+        }
+        
+        function saveAnswer(selectedIndex) {
+            // Simplified save answer for single choice since click triggers it
+            userAnswers[currentQuestionIndex] = [selectedIndex];
         }
 
         function startTimer() {
@@ -439,8 +478,7 @@ Based on this, provide a brief, encouraging paragraph summarizing their performa
 
         function endQuiz() {
             clearInterval(timerInterval);
-            saveAnswer(); 
-
+            
             let score = 0;
             incorrectQuestions = [];
             for (let i = 0; i < shuffledQuestions.length; i++) {
@@ -448,12 +486,10 @@ Based on this, provide a brief, encouraging paragraph summarizing their performa
                 const answers = userAnswers[i] || [];
                 const correctAnswers = question.correct;
                 
-                answers.sort((a,b) => a-b);
-                correctAnswers.sort((a,b) => a-b);
-
-                if (JSON.stringify(answers) === JSON.stringify(correctAnswers)) {
+                // Direct comparison for single choice answers
+                if (answers.length > 0 && correctAnswers.includes(answers[0])) {
                     score++;
-                } else {
+                } else if(userAnswers[i] !== undefined) { // only count answered questions as incorrect
                     const incorrectQ = {...question};
                     incorrectQ.userAnswer = answers;
                     incorrectQuestions.push(incorrectQ);

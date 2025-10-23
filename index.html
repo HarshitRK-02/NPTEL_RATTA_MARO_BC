@@ -26,6 +26,7 @@
             border-color: #f87171 !important; /* red-400 */
             color: #b91c1c; /* red-800 */
         }
+        /* Correctly target the whole option div for disabling */
         .disabled-options .quiz-option {
             pointer-events: none;
             opacity: 0.9;
@@ -59,7 +60,7 @@
         <div id="home-screen">
             <h1 class="text-4xl font-bold text-slate-900 text-center mb-4">Cyber Security Quiz Hub</h1>
             <p class="text-slate-600 text-center mb-8">Select a weekly quiz or take the final comprehensive test.</p>
-            
+
             <div class="mb-10">
                 <h2 class="text-2xl font-semibold text-slate-800 mb-4 text-center">Weekly Quizzes (10 Minutes)</h2>
                 <div id="weekly-quiz-selection" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
@@ -70,7 +71,7 @@
             <div>
                 <h2 class="text-2xl font-semibold text-slate-800 mb-4 text-center">Comprehensive Test (30 Minutes)</h2>
                  <button data-quiz-type="final" class="quiz-selection-btn w-full bg-indigo-600 text-white font-bold py-4 px-6 rounded-lg hover:bg-indigo-700 text-lg">
-                    Start Final Test (All Questions)
+                    Start Final Test (All 120 Questions)
                 </button>
             </div>
         </div>
@@ -131,12 +132,12 @@
                 { text: "How do spear-phishing attacks differ from general phishing attacks?", options: ["They use only phone calls as a medium", "They are randomly sent to thousands of people", "They target specific individuals with personalized messages", "They do not involve malware at all"], correct: [2], type: 'single' },
                 { text: "What does ransomware typically do to a victim's files?", options: ["Deletes them permanently", "Encrypts them to prevent access", "Transfers them to another device", "Makes them publicly available online"], correct: [1], type: 'single' },
                 { text: "Which of the following are examples of systems protected under Critical Infrastructure Protection (CIP)?", options: ["Gaming consoles and home Wi-Fi routers", "SCADA systems, Industrial Control Systems (ICS), and operational technology", "Social media networks and entertainment apps", "Educational platforms and student databases"], correct: [1], type: 'single' },
-                { text: "____is the protection of information assets that use, store, or transmit information through the application of policy, education, and technology.", options: ["Network Security", "Operations Security", "Communications Security", "Information Security"], correct: [3], type: 'single' },
-                { text: "____is the property of information that describes how data is whole, complete, and uncorrupted.", options: ["Integrity", "Availability", "Confidentiality", "Accuracy"], correct: [0], type: 'single' },
+                { text: "What is the protection of information assets that use, store, or transmit information through the application of policy, education, and technology?", options: ["Network Security", "Operations Security", "Communications Security", "Information Security"], correct: [3], type: 'single' },
+                { text: "What is the property of information that describes how data is whole, complete, and uncorrupted?", options: ["Integrity", "Availability", "Confidentiality", "Accuracy"], correct: [0], type: 'single' },
                 { text: "To protect the confidentiality of information, which of the following measures can be taken:", options: ["Information classification", "Secure document storage", "Application of general security policies", "All the above"], correct: [3], type: 'single' },
                 { text: "In the context of cybersecurity, how can technology act as a source of threat?", options: ["It includes tools that can attack other networks", "It increases internet traffic for organizations", "It automates routine business operations", "Through software that prevents users from sharing information"], correct: [0], type: 'single' },
                 { text: "True or False: Information Security is not a process, but a product or a technology.", options: ["True", "False"], correct: [1], type: 'single' },
-                { text: "____is a manipulation technique that exploits human error to gain private information, access, or valuables", options: ["Session Hijacking", "Salting", "Social Engineering", "Smurf Attack"], correct: [2], type: 'single' },
+                { text: "What is a manipulation technique that exploits human error to gain private information, access, or valuables?", options: ["Session Hijacking", "Salting", "Social Engineering", "Smurf Attack"], correct: [2], type: 'single' },
                 { text: "Which of the following scenarios represents a breach involving protected health information (PHI)?", options: ["Sharing a patient's prescription history along with their name", "Forwarding anonymous health statistics to a research team", "Posting a hospital's general policy on patient intake", "Transmitting appointment schedules without personal details"], correct: [0], type: 'single' }
             ],
             week2: [
@@ -164,35 +165,35 @@
                 { text: "Which of the following statements is correct regarding ISO 27001 certification?", options: ["ISO 27001 certification is only relevant for government agencies.", "ISO 27001 certification can be issued to both organizations and individuals.", "ISO 27001 certification can only be issued to organizations.", "ISO 27001 certification is only available to individuals, not organizations."], correct: [2], type: 'single' }
             ],
             week4: [
-                { text: "____is the actions taken by management to specify the intermediate goals and objectives of the organization in order to obtain specified strategic goals, followed by estimates and schedules for the allocation of resources necessary to achieve those goals and objectives.", options: ["Tactical Planning", "Strategic Planning", "Operational Planning", "Business Continuity Planning"], correct: [0], type: 'single' },
+                { text: "What are the actions taken by management to specify the intermediate goals and objectives of the organization to obtain specified strategic goals, followed by estimates and schedules for resource allocation?", options: ["Tactical Planning", "Strategic Planning", "Operational Planning", "Business Continuity Planning"], correct: [0], type: 'single' },
                 { text: "True or False: Strategic plans are used to create operational plans, which in turn are used to develop tactical plans.", options: ["True", "False"], correct: [1], type: 'single' },
-                { text: "The actions taken by senior management to develop and implement a combined Disaster Recovery (DR) and Business Continuity (BC) policy, plan, and set of recovery teams is known as", options: ["Business Resumption Planning (BRP)", "Business Continuity Planning (BCP)", "Disaster Recovery Planning (DRP)", "Incident Response Planning (IRP)"], correct: [0], type: 'single' },
-                { text: "____is an adverse event that could result in loss of an information asset or assets, but does not currently threaten the viability of the entire organization.", options: ["Disaster", "Phishing", "Incident", "Impact"], correct: [2], type: 'single' },
-                { text: "Contingency Plan includes", options: ["Incident Response Planning (IRP), Organizational Planning (OP), and Business Continuity Planning (BCP)", "Organizational Planning (OP), Disaster Recovery Planning (DRP), and Business Continuity Planning (BCP)", "Incident Response Planning (IRP), Disaster Recovery Planning (DRP), and Tactical Planning (TP)", "Incident Response Planning (IRP), Disaster Recovery Planning (DRP), and Business Continuity Planning (BCP)"], correct: [3], type: 'single' },
-                { text: "____is an investigation and assessment of adverse events that can affect the organization, conducted as a preliminary phase of the contingency planning process.", options: ["Business Contingency Plan", "Direct Changeover Conversion Strategy", "Crisis Management Planning", "Business Impact Analysis"], correct: [3], type: 'single' },
-                { text: "____is the total amount of time the system owner is willing to accept for a mission/business process outage or disruption, including all impact considerations.", options: ["Recovery Time Objective", "Work Recovery Time", "Maximum Tolerable Downtime", "Total Recovery Time"], correct: [2], type: 'single' },
-                { text: "The presence or execution of unknown programs or processes is a", options: ["Possible incident indicator", "Probable incident indicator", "Definite incident indicator", "All the above"], correct: [0], type: 'single' },
-                { text: "An organization can choose from several cost-based strategies when planning for business continuity.____is a facility that provides only basic services, with no computer hardware or peripherals.", options: ["Hot Sites", "Warm Sites", "Cold Sites", "Yellow Sites"], correct: [2], type: 'single' },
+                { text: "The actions taken by senior management to develop and implement a combined Disaster Recovery (DR) and Business Continuity (BC) policy, plan, and set of recovery teams is known as:", options: ["Business Resumption Planning (BRP)", "Business Continuity Planning (BCP)", "Disaster Recovery Planning (DRP)", "Incident Response Planning (IRP)"], correct: [0], type: 'single' },
+                { text: "What is an adverse event that could result in loss of an information asset, but does not currently threaten the viability of the entire organization?", options: ["Disaster", "Phishing", "Incident", "Impact"], correct: [2], type: 'single' },
+                { text: "A Contingency Plan includes which of the following?", options: ["Incident Response Planning (IRP), Organizational Planning (OP), and Business Continuity Planning (BCP)", "Organizational Planning (OP), Disaster Recovery Planning (DRP), and Business Continuity Planning (BCP)", "Incident Response Planning (IRP), Disaster Recovery Planning (DRP), and Tactical Planning (TP)", "Incident Response Planning (IRP), Disaster Recovery Planning (DRP), and Business Continuity Planning (BCP)"], correct: [3], type: 'single' },
+                { text: "What is an investigation and assessment of adverse events that can affect the organization, conducted as a preliminary phase of the contingency planning process called?", options: ["Business Contingency Plan", "Direct Changeover Conversion Strategy", "Crisis Management Planning", "Business Impact Analysis"], correct: [3], type: 'single' },
+                { text: "What is the total amount of time the system owner is willing to accept for a mission/business process outage or disruption, including all impact considerations?", options: ["Recovery Time Objective", "Work Recovery Time", "Maximum Tolerable Downtime", "Total Recovery Time"], correct: [2], type: 'single' },
+                { text: "The presence or execution of unknown programs or processes is a:", options: ["Possible incident indicator", "Probable incident indicator", "Definite incident indicator", "All the above"], correct: [0], type: 'single' },
+                { text: "An organization can choose from several cost-based strategies when planning for business continuity. Which type of site is a facility that provides only basic services, with no computer hardware or peripherals?", options: ["Hot Sites", "Warm Sites", "Cold Sites", "Yellow Sites"], correct: [2], type: 'single' },
                 { text: "Which of the following statements accurately distinguish between a threat and an attack in cybersecurity? (Select all that apply)", options: ["A threat is a potential danger, while an attack is an active action taken to exploit that danger", "An attack can exist without a preceding threat", "A threat actor often carries out an attack", "An attack's success always depends on the existence of a vulnerability that the threat agent can exploit"], correct: [0, 2, 3], type: 'multiple' }
             ],
             week5: [
                  { text: "Which of the following statement is not true?", options: ["Policies direct how issues should be addressed and technologies should be used.", "Information security policy is best disseminated in a comprehensive security education, training, and awareness (SETA) program.", "Policies are more detailed than standards and describe the steps that must be taken to conform to standards.", "Management must use policies as the basis for all information security planning, design, and deployment."], correct: [2], type: 'single' },
-                { text: "____is an organizational policy that provides detailed, targeted guidance to instruct all members of the organization in the use of a resource, such as one of its processes or technologies.", options: ["Systems-specific security policy", "Issue-specific security policy", "Enterprise information security policy", "General or security program policy"], correct: [1], type: 'single' },
+                { text: "What is an organizational policy that provides detailed, targeted guidance to instruct all members of the organization in the use of a resource, such as one of its processes or technologies?", options: ["Systems-specific security policy", "Issue-specific security policy", "Enterprise information security policy", "General or security program policy"], correct: [1], type: 'single' },
                 { text: "Which of the following is not a component of Enterprise information security policy?", options: ["Statement of Purpose", "Information Security Responsibilities and Roles", "Reference to other Information Standards and Guidelines", "Statement of Policy"], correct: [3], type: 'single' },
-                { text: "contains the specifications of authorization that govern the rights and privileges of users to a particular information asset.", options: ["Access Control List (ACL)", "Capabilities Table", "Configuration Rules", "Authentication Protocol"], correct: [0], type: 'single' },
-                { text: "Access Control Matrix combines the information in", options: ["Access Control List (ACL)s and Capability Tables.", "Access Control List (ACL)s and Authentication Protocol.", "Authentication Protocol and Capability Tables.", "Configuration Rules and Capability Tables."], correct: [0], type: 'single' },
+                { text: "What contains the specifications of authorization that govern the rights and privileges of users to a particular information asset?", options: ["Access Control List (ACL)", "Capabilities Table", "Configuration Rules", "Authentication Protocol"], correct: [0], type: 'single' },
+                { text: "An Access Control Matrix combines the information in:", options: ["Access Control List (ACL)s and Capability Tables.", "Access Control List (ACL)s and Authentication Protocol.", "Authentication Protocol and Capability Tables.", "Configuration Rules and Capability Tables."], correct: [0], type: 'single' },
                 { text: "Which of the following best differentiates cyber hygiene from cybersecurity?", options: ["Cyber hygiene is hardware-focused, while cybersecurity is software-focused.", "Cyber hygiene is reactive in nature, while cybersecurity is always proactive.", "Cyber hygiene involves routine practices for maintaining digital health, whereas cybersecurity includes broader strategies, technologies, and incident response.", "Cyber hygiene focuses only on personal devices, while cybersecurity is limited to organizations."], correct: [2], type: 'single' },
                 { text: "True or False: Configuration rules govern how a security system reacts to the data it receives.", options: ["True", "False"], correct: [0], type: 'single' },
                 { text: "Which of the following is not true about Systems-Specific Security Policies (SysSPs)?", options: ["SysSPs can be separated into two general groups, managerial guidance SysSPs and technical specifications SysSPs.", "SysSPs function as standards or procedures to be used when configuring or maintaining systems.", "SysSPs can be combined into a single policy document that contains elements of both managerial guidance SysSPs and technical specifications SysSPs.", "SysSPs can be developed at the same time as Issue-specific policies (ISSPs), or they can be prepared after their related ISSPs."], correct: [3], type: 'single' },
                 { text: "Which of the following are the basic rules that should be followed when shaping a policy?", options: ["Never conflict with law", "Properly supported and administered", "Involve end users of information systems", "All the above"], correct: [3], type: 'single' },
-                { text: "The statement 'Use strong passwords, frequently changed.' is an example of", options: ["Practice", "Standard", "Guideline", "Policy"], correct: [3], type: 'single' }
+                { text: "The statement 'Use strong passwords, frequently changed.' is an example of:", options: ["Practice", "Standard", "Guideline", "Policy"], correct: [3], type: 'single' }
             ],
             week6: [
                 { text: "Risk management involves three major undertakings:", options: ["Risk Auditing, Risk Assessment, and Risk Control", "Risk Identification, Risk Assessment, and Risk Auditing", "Risk Identification, Risk Assessment, and Risk Control", "Risk Monitoring, Risk Assessment, and Risk Auditing"], correct: [2], type: 'single' },
                 { text: "Determine Loss Frequency (Likelihood) comes under:", options: ["Risk Identification", "Risk Auditing", "Risk Monitoring", "Risk Assessment"], correct: [3], type: 'single' },
-                { text: "Residual risk is a combined function of", options: ["(1) a threat less the effect of threat-reducing safeguards, (2) a vulnerability less the effect of vulnerability-reducing safeguards, and (3) an asset less the effect of asset value-reducing safeguards.", "(1) a threat less the effect of threat-reducing safeguards, (2) a vulnerability plus the effect of vulnerability-reducing safeguards, and (3) an asset less the effect of asset value-reducing safeguards", "(1) a threat plus the effect of threat-reducing safeguards, (2) a vulnerability plus the effect of vulnerability-reducing safeguards, and (3) an asset plus the effect of asset value-reducing safeguards", "(1) a threat plus the effect of threat-reducing safeguards, (2) a vulnerability plus the effect of vulnerability-reducing safeguards, and (3) an asset less the effect of asset value-reducing safeguards"], correct: [0], type: 'single' },
+                { text: "Residual risk is a combined function of:", options: ["(1) a threat less the effect of threat-reducing safeguards, (2) a vulnerability less the effect of vulnerability-reducing safeguards, and (3) an asset less the effect of asset value-reducing safeguards.", "(1) a threat less the effect of threat-reducing safeguards, (2) a vulnerability plus the effect of vulnerability-reducing safeguards, and (3) an asset less the effect of asset value-reducing safeguards", "(1) a threat plus the effect of threat-reducing safeguards, (2) a vulnerability plus the effect of vulnerability-reducing safeguards, and (3) an asset plus the effect of asset value-reducing safeguards", "(1) a threat plus the effect of threat-reducing safeguards, (2) a vulnerability plus the effect of vulnerability-reducing safeguards, and (3) an asset less the effect of asset value-reducing safeguards"], correct: [0], type: 'single' },
                 { text: "Risk tolerance defines the quantity and nature of risk that organizations are willing to accept as they evaluate the trade-offs between perfect security and unlimited accessibility.", options: ["True", "False"], correct: [0], type: 'single' },
-                { text: "The calculation of the likelihood of an attack coupled with the attack frequency to determine the expected number of losses within a specified time range is called", options: ["Attack Success Probability", "Loss Frequency", "Loss Magnitude", "Probable Loss"], correct: [1], type: 'single' },
+                { text: "The calculation of the likelihood of an attack coupled with the attack frequency to determine the expected number of losses within a specified time range is called:", options: ["Attack Success Probability", "Loss Frequency", "Loss Magnitude", "Probable Loss"], correct: [1], type: 'single' },
                 { text: "TechNova Inc. owns Asset A... Using the formula: Risk =(Loss Frequency * Loss Magnitude)+ Uncertainty Term Calculate the final risk score for Asset A.", options: ["2.75", "2.5", "3.75", "2.25"], correct: [0], type: 'single' },
                 { text: "Which of the following is not true?", options: ["The mitigation risk control strategy attempts to shift risk to other assets, other processes, or other organizations.", "The mitigation risk control strategy reduces the impact of the loss caused by a realized incident, disaster, or attack through effective contingency planning and preparation.", "The mitigation risk control strategy attempts to reduce the impact of an attack rather than reduce the success of the attack itself.", "The mitigation risk control strategy requires the creation of three types of contingency plans: the incident response plan, the disaster recovery plan, and the business continuity plan."], correct: [0], type: 'single' },
                 { text: "The process of identifying and documenting specific and provable flaws in the organization's information asset environment is known as:", options: ["Risk Assessment", "Vulnerability Assessment", "Asset Scanning", "Risk Control"], correct: [1], type: 'single' },
@@ -200,7 +201,7 @@
                 { text: "Which of the following statements is /are true? (Select all that apply)", options: ["Risk management examines and documents the information technology security being used in an organization.", "A key component of a risk management strategy is the identification and classification of the organization's information assets, while prioritization is performed only after risk controls are implemented.", "Risk management helps an organization identify vulnerabilities in its information systems and take carefully reasoned steps to assure the confidentiality, integrity, and availability of all components in those systems.", "The goal of risk assessment is to assign a risk rating or score that represents the relative risk for a specific vulnerability of an information asset."], correct: [0, 2, 3], type: 'multiple' }
             ],
              week7: [
-                { text: "____is the principle that an individual is entrusted to safeguard and control equipment, keying material, and information and is answerable to proper authority for the loss or misuse of that equipment or information.", options: ["Auditability", "Accountability", "Confidentiality", "Responsibility"], correct: [1], type: 'single' },
+                { text: "What is the principle that an individual is entrusted to safeguard and control equipment, keying material, and information and is answerable to proper authority for the loss or misuse of that equipment or information?", options: ["Auditability", "Accountability", "Confidentiality", "Responsibility"], correct: [1], type: 'single' },
                 { text: "Which of the following rings provides the least privileges in an Operating System?", options: ["Ring 0", "Ring 1", "Ring 2", "Ring 3"], correct: [3], type: 'single' },
                 { text: "Which of the following is not true about asymmetric encryption?", options: ["Asymmetric encryption incorporates mathematical operations involving both a public key and a private key to encipher or decipher a message.", "Asymmetric encryption relies on asymmetric cryptography, also known as private key cryptography.", "Rivest Shamir Adleman (RSA) is an example of asymmetric encryption.", "Asymmetric cryptography has two primary use cases: authentication and confidentiality."], correct: [1], type: 'single' },
                 { text: "Which team is responsible for defending against cyber threats by implementing security measures and monitoring systems for suspicious activities?", options: ["Red Team", "Yellow Team", "Green Team", "Blue Team"], correct: [3], type: 'single' },
@@ -220,14 +221,14 @@
                 { text: "A website has a Single Loss Expectancy (SLE) of $100,000. If the Annualized Rate of Occurrence (ARO) is estimated at 0.50, what is the Annualized Loss Expectancy (ALE)?", options: ["$5,000", "$50,000", "$100,000", "$500,000"], correct: [1], type: 'single' },
                 { text: "Which of the following is true regarding Cost-Benefit Analysis (CBA), Annualized Loss Expectancy (ALE), and annualized cost of a safeguard (ACS)?", options: ["CBA = ALE(prior) - ALE(post) - ACS", "CBA = ALE(prior) - ALE(post) + ACS", "CBA = ALE(prior) + ALE(post) - ACS", "CBA = ALE(prior) + ALE(post) + ACS"], correct: [0], type: 'single' },
                 { text: "Which of the following statements is/are correct? (Select all that apply)", options: ["Bit stream cipher is an encryption method that involves converting plaintext to ciphertext one bit at a time", "Block cipher is an encryption method that involves dividing the plaintext into a sets of bits and then converting the plaintext to ciphertext one block at a time", "Bit stream methods most commonly use algorithm functions like XOR, whereas block methods can use XOR, transposition, or substitution", "Enciphering is the process of converting an encoded message back to its original readable form"], correct: [0, 1, 2], type: 'multiple' },
-                { text: "____are encrypted messages that can be mathematically proven as authentic.", options: ["Digital signatures", "Digital Certificates", "Message Authentication Codes", "Hash values"], correct: [0], type: 'single' },
+                { text: "What are encrypted messages that can be mathematically proven as authentic called?", options: ["Digital signatures", "Digital Certificates", "Message Authentication Codes", "Hash values"], correct: [0], type: 'single' },
                 { text: "Which security concept ensures that a sender cannot deny having sent a message, by reversing public-key encryption to verify its origin?", options: ["Confidentiality", "Integrity", "Nonrepudiation", "Authentication"], correct: [2], type: 'single' }
             ],
             week9: [
                 { text: "What is the earliest notion of privacy in history?", options: ["Privacy as a legal right with clearly defined boundaries", "Privacy as freedom, emphasizing the right to be let alone", "Privacy as a commercial concept related to data protection", "Privacy as a national security concern"], correct: [1], type: 'single' },
                 { text: "True or False: Privacy is an absolute right in the context of law.", options: ["True", "False"], correct: [1], type: 'single' },
                 { text: "The acronym FIPP stands for:", options: ["Fair Internet Privacy Policies", "Federal Information Protection Protocols", "Fair Information Practice Principles", "Foundational Internet Privacy Procedures"], correct: [2], type: 'single' },
-                { text: "The ____view argues that privacy is not an independent concept but can be reduced to other rights like property or liberty.", options: ["Economic", "Feminist", "Political", "Reductionist"], correct: [3], type: 'single' },
+                { text: "Which view argues that privacy is not an independent concept but can be reduced to other rights like property or liberty?", options: ["Economic", "Feminist", "Political", "Reductionist"], correct: [3], type: 'single' },
                 { text: "What is the core principle of informational privacy?", options: ["The right to remain anonymous at all times", "The complete elimination of all personal data collection", "The responsibility of companies to prioritize profits over user privacy", "The ability of individuals to decide what personal information they share and with whom"], correct: [3], type: 'single' },
                 { text: "The FIPPs were first introduced in a report by:", options: ["The Federal Trade Commission (FTC)", "The European Union", "The US Secretary's Advisory Committee on Automated Personal Data Systems", "A private industry consortium"], correct: [2], type: 'single' },
                 { text: "According to India's DPDP Act, what/who is the 'data principle'?", options: ["The company that determines the purpose & means of data processing", "An external auditor who verifies a company's data protection measures", "The individual whose data is being processed/used", "A government agency responsible for enforcing the law"], correct: [2], type: 'single' },
@@ -236,12 +237,12 @@
                 { text: "Which of the following are important reasons why information privacy is significant for organizations? (Select all that apply)", options: ["Protect sensitive customer and employee data from unauthorized access", "Comply with legal and regulatory requirements related to data protection", "To increase the amount of data collected regardless of its relevance for business competition", "To maintain customer trust and protect the organization's reputation", "Avoid financial penalties and legal consequences due to data breaches"], correct: [0, 1, 3, 4], type: 'multiple' }
             ],
             week10: [
-                { text: "____is the phenomenon where individuals claim to value privacy, yet in practice, they trade their personal data for trivial benefits or fail to use measures to protect their privacy.", options: ["Privacy Fatigue", "Privacy Negligence", "Privacy Paradox", "Privacy Breach"], correct: [2], type: 'single' },
+                { text: "What is the phenomenon where individuals claim to value privacy, yet in practice, they trade their personal data for trivial benefits or fail to use measures to protect their privacy?", options: ["Privacy Fatigue", "Privacy Negligence", "Privacy Paradox", "Privacy Breach"], correct: [2], type: 'single' },
                 { text: "Which of the following is not true:", options: ["Personally Identifiable Information (PII) refers to any data that can be linked to a specific individual and used to reveal or misuse their identity", "A social security number (SSN) can be considered as a sensitive PII", "A person's medical records can be considered as a non-sensitive PII", "Non-sensitive PII would not cause significant harm to a person if leaked or stolen"], correct: [2], type: 'single' },
                 { text: "Which of the following best distinguishes the Right to Privacy from the Right to Anonymity?", options: ["Privacy is about preventing identity disclosure, while anonymity is about protecting personal information", "Privacy ensures control over personal data and how it is shared, while anonymity ensures that actions cannot be traced back to an identifiable individual", "Privacy is a technical safeguard, while anonymity is a legal right", "Privacy applies only to digital data, while anonymity applies only to physical identity"], correct: [1], type: 'single' },
                 { text: "True or False: Personal data that has been de-identified, encrypted or pseudonymised, but can be used to re-identify a person, remains personal data and falls within the scope of the GDPR.", options: ["True", "False"], correct: [0], type: 'single' },
-                { text: "____has been defined as the intentional concealment of information.", options: ["Anonymity", "Confidentiality", "Secrecy"], correct: [2], type: 'single' },
-                { text: "British law embraces privacy as", options: ["Security", "Anonymity", "Confidentiality", "Secrecy"], correct: [2], type: 'single' },
+                { text: "What has been defined as the intentional concealment of information?", options: ["Anonymity", "Confidentiality", "Secrecy"], correct: [2], type: 'single' },
+                { text: "British law embraces privacy as:", options: ["Security", "Anonymity", "Confidentiality", "Secrecy"], correct: [2], type: 'single' },
                 { text: "Which of the statements about pseudonymization is true?", options: ["Pseudonymization is a technique proposed by frameworks like Privacy by Design offering practical substitutes for using the raw data, especially when this data is sensitive", "Various pseudonymization techniques enable you to preserve format or understand the original intention for that data", "Pseudonymization methods often maintain the capability to establish connections between data, which proves beneficial when linking datasets using personal identifiers or other sensitive columns", "All the above"], correct: [3], type: 'single' },
                 { text: "Differential privacy is:", options: ["A method of probabilistically limiting the amount of information an attacker can gain when data is released", "A method for measuring and monitoring the loss of privacy experienced by an individual in a dataset that has been released", "One of the most effective methods for providing individuals in a dataset with plausible deniability while still performing data analysis", "All the above"], correct: [3], type: 'single' },
                 { text: "Which of the following statement is not true about k-anonymity?", options: ["k-anonymity is an intuitive and widely used method for modifying data for privacy protection", "For k-anonymity to be achieved, there need to be at least k+1 individuals in the dataset who share the set of attributes that might become identifying for each individual", "Generalization is a method for achieving K-Anonymity", "k-anonymity can be provided by using suppression techniques"], correct: [1], type: 'single' },
@@ -258,6 +259,19 @@
                 { text: "Which of the following best describes the concept of data localization in India?", options: ["Permanent deletion of all sensitive data", "Mandatory storage and processing of certain data within the country's borders", "Making data available to all global users", "Storing data only on cloud servers outside India"], correct: [1], type: 'single' },
                 { text: "Under GDPR, which of the following is a key responsibility of the Data Protection Officer (DPO)?", options: ["Designing the firm's IT infrastructure", "Advising on and monitoring firm's compliance with data protection laws", "Managing all financial transactions", "Hiring and firing employees"], correct: [1], type: 'single' },
                 { text: "In the context of Aadhaar data, who would be considered the Data Principal?", options: ["The Unique Identification Authority of India (UIDAI)", "The individual to whom the Aadhaar number and related data belong", "The service providers using Aadhaar authentication", "The government agency processing the data"], correct: [1], type: 'single' }
+            ],
+            // --- ADD WEEK 12 HERE ---
+            week12: [
+                { text: "What does Prospect Theory suggest about how people perceive gains and losses?", options: ["People value all gains and losses equally", "Individuals are more likely to take risks for potential gains.", "Losses are typically felt more intensely than gains.", "People only care about maximizing their financial gains"], correct: [2], type: 'single' },
+                { text: "An employee believes that the personal data on their device is more valuable than others perceive, simply because it belongs to them. This is an example of which cognitive bias?", options: ["Anchoring Bias", "Endowment Effect", "Confirmation Bias", "Availability Heuristic"], correct: [1], type: 'single' },
+                { text: "Which design approach is best recommended to address privacy concerns with digital contact tracing applications?", options: ["Implement a centralized architecture where all contact tracing data is stored and processed by a single authority", "Develop a decentralized, privacy-preserving architecture that minimizes the sharing of personal data", "Prioritize public health benefits over individual privacy protections in the design of contact tracing systems", "Require mandatory participation in contact tracing programs to maximize the effectiveness of the technology"], correct: [1], type: 'single' },
+                { text: "Which of the following is an example of the privacy paradox by an action of a user?", options: ["Reads a website's privacy policy in detail before signing up", "Chooses to pay for a service to avoid targeted ads.", "Expresses concern about data collection but uses free social media services", "Deletes their old accounts to protect their personal information"], correct: [2], type: 'single' },
+                { text: "In the typical case of privacy valuation, the relationship between Willingness-to-Accept (WTA) and Willingness-to-Pay (WTP) is:", options: ["WTA < WTP", "WTA = WTP", "WTA > WTP", "No relationship between WTA and WTP"], correct: [2], type: 'single' },
+                { text: "Which of the following is true about privacy valuation?", options: ["Privacy valuation is consistent across all individuals and contexts.", "Privacy valuation is influenced by external factors and remains stable over time", "Privacy valuation has variability and is context driven.", "Privacy valuation is solely determined by economic factors and market trends."], correct: [2], type: 'single' },
+                { text: "What is the core idea behind the privacy calculus?", options: ["Individuals make irrational decisions about sharing personal information", "Individuals engage in a cost-benefit analysis to decide whether to disclose personal data", "Individuals do not have any control over the disclosure of their personal information", "Individuals are solely motivated by the potential benefits of data sharing"], correct: [1], type: 'single' },
+                { text: "Why is understanding the value that individuals assign to the protection of their personal data important for businesses?", options: ["To enable businesses to use personal data for maximum commercial gain", "To help businesses develop privacy-enhancing initiatives that can provide a competitive advantage", "To allow businesses to mandate strict data collection and usage policies without considering consumer preferences", "To facilitate the creation of personal data trading markets where individuals can monetize their information"], correct: [1], type: 'single' },
+                { text: "A father took photos of his sick toddler to share with a doctor. An automated system flagged the images as child abuse material and flagged the father as a criminal. This incident highlights which key concern in information privacy?", options: ["Accuracy and fairness in automated systems", "Data minimization", "Right to be forgotten", "Encryption of personal data"], correct: [0], type: 'single' },
+                { text: "During online checkout, a retailer asks customers for shipping addresses and contact details to deliver orders. However, it also requests marital status and income, which are not relevant. This violates which privacy principle?", options: ["Data Portability", "Data Minimization", "Purpose Limitation", "Transparency Requirment"], correct: [1], type: 'single' }
             ]
         };
 
@@ -305,6 +319,8 @@
 
         // --- Initial Setup ---
         function initialize() {
+            // Clear existing buttons before adding new ones
+            weeklyQuizSelection.innerHTML = '';
             // Create buttons for weekly quizzes
             Object.keys(weeklyQuestions).forEach((weekKey, index) => {
                 const weekNum = index + 1;
@@ -314,7 +330,7 @@
                 button.textContent = `Week ${weekNum}`;
                 weeklyQuizSelection.appendChild(button);
             });
-            
+
             // Add event listeners to all quiz selection buttons
             document.querySelectorAll('.quiz-selection-btn').forEach(button => {
                 button.addEventListener('click', (e) => {
@@ -322,7 +338,7 @@
                     startQuiz(quizType);
                 });
             });
-            
+
             backToHomeBtn.addEventListener('click', showHomeScreen);
             nextBtn.addEventListener('click', () => {
                  currentQuestionIndex++;
@@ -338,7 +354,7 @@
             homeScreen.classList.remove('hidden');
             quizScreen.classList.add('hidden');
             resultScreen.classList.add('hidden');
-            
+
             // Clear timer if it's running
             if(timerInterval) clearInterval(timerInterval);
         }
@@ -353,14 +369,32 @@
                 contents: [{ parts: [{ text: prompt }] }],
             };
             try {
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-                if (!response.ok) {
-                    throw new Error(`API call failed with status: ${response.status}`);
+                // Implement exponential backoff
+                let response;
+                let delay = 1000; // Start with 1 second delay
+                for (let i = 0; i < 5; i++) { // Retry up to 5 times
+                     response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    if (response.ok) {
+                        break; // Success, exit loop
+                    }
+                    if (response.status === 429 || response.status >= 500) {
+                         // Throttling or server error, wait and retry
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                        delay *= 2; // Double the delay
+                    } else {
+                        // Other client-side error, don't retry
+                        throw new Error(`API call failed with status: ${response.status}`);
+                    }
                 }
+
+                if (!response.ok) {
+                     throw new Error(`API call failed after retries with status: ${response.status}`);
+                }
+
                 const result = await response.json();
                 return result.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I couldn't generate a response.";
             } catch (error) {
@@ -368,6 +402,7 @@
                 return "An error occurred while contacting the AI. Please check the console.";
             }
         }
+
 
         async function getHint() {
             const currentQuestion = currentQuizQuestions[currentQuestionIndex];
@@ -381,7 +416,7 @@ Question: "${currentQuestion.text}"
 Options: ${currentQuestion.options.join(', ')}`;
 
             const hint = await callGemini(prompt);
-            
+
             hintContainer.textContent = hint;
             hintContainer.classList.remove('hidden');
             hintSpinner.classList.add('hidden');
@@ -392,7 +427,7 @@ Options: ${currentQuestion.options.join(', ')}`;
             feedbackBtnText.textContent = 'Analyzing...';
             feedbackSpinner.classList.remove('hidden');
             aiFeedbackContainer.classList.remove('hidden');
-            aiFeedbackContainer.innerHTML = '';
+            aiFeedbackContainer.innerHTML = '<div class="spinner mx-auto mb-2"></div><p>Generating feedback...</p>'; // Show loading inside container
 
             const score = userAnswers.score;
             const total = currentQuizQuestions.length;
@@ -408,13 +443,19 @@ Options: ${currentQuestion.options.join(', ')}`;
 The student scored ${score} out of ${total}.
 
 Here are the questions they answered incorrectly:
-${incorrectList}
+${incorrectList || "Congratulations, no incorrect answers!"}
 
-Based on this, provide a brief, encouraging paragraph summarizing their performance. Identify one or two key conceptual areas where they seem to struggle. Finally, offer a concrete suggestion for what topic they should review to improve their understanding. Format the response with a summary, a list of topics to review, and a final encouraging sentence.`;
+Based on this, provide a brief, encouraging paragraph summarizing their performance. If there were incorrect answers, identify one or two key conceptual areas where they seem to struggle. Finally, offer a concrete suggestion for what topic(s) they should review to improve their understanding. Format the response with a summary, a list of potential topics to review (if applicable), and a final encouraging sentence. Use Markdown for formatting (like **bold** or *italics*), but avoid headings (#).`;
 
             const analysis = await callGemini(prompt);
-            
-            aiFeedbackContainer.innerHTML = analysis.replace(/\n/g, '<br>');
+
+            // Basic Markdown to HTML conversion
+            let htmlAnalysis = analysis
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // Bold
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')     // Italics
+                .replace(/\n/g, '<br>');                  // Newlines
+
+            aiFeedbackContainer.innerHTML = htmlAnalysis;
             feedbackSpinner.classList.add('hidden');
             feedbackBtnText.textContent = 'Analysis Complete';
         }
@@ -432,35 +473,43 @@ Based on this, provide a brief, encouraging paragraph summarizing their performa
             homeScreen.classList.add('hidden');
             quizScreen.classList.remove('hidden');
             resultScreen.classList.add('hidden');
-            
+
             let durationMinutes;
             if (quizType === 'final') {
                 currentQuizQuestions = Object.values(weeklyQuestions).flat();
                 quizTitleEl.textContent = 'Final Test';
                 resultTitleEl.textContent = 'Final Test Complete!';
-                durationMinutes = 30;
+                durationMinutes = 30; // 30 minutes for the final test
             } else {
                 const weekNum = parseInt(quizType.replace('week', ''));
                 currentQuizQuestions = weeklyQuestions[quizType];
                 quizTitleEl.textContent = `Week ${weekNum} Quiz`;
                 resultTitleEl.textContent = `Week ${weekNum} Quiz Complete!`;
-                durationMinutes = 10;
+                durationMinutes = 10; // 10 minutes for weekly quizzes
             }
-            
-            shuffleArray(currentQuizQuestions);
-            
+
+            // --- Deep copy and shuffle ---
+            let questionsToShuffle = JSON.parse(JSON.stringify(currentQuizQuestions));
+            shuffleArray(questionsToShuffle);
+
             // Shuffle options for each question
-            currentQuizQuestions.forEach(q => {
-                // Create an array of indices to shuffle
-                let indices = q.options.map((_, i) => i);
-                let shuffledIndices = shuffleArray([...indices]);
-                
-                // Reorder options and correct answers based on shuffled indices
-                q.options = shuffledIndices.map(i => q.options[i]);
-                q.correct = q.correct.map(originalCorrectIndex => 
-                    shuffledIndices.findIndex(shuffledIndex => shuffledIndex === originalCorrectIndex)
+            questionsToShuffle.forEach(q => {
+                let originalOptions = [...q.options];
+                let originalCorrect = [...q.correct];
+
+                let optionMap = q.options.map((option, index) => ({ option, index }));
+                shuffleArray(optionMap);
+
+                q.options = optionMap.map(item => item.option);
+                q.correct = originalCorrect.map(correctIndex =>
+                    optionMap.findIndex(item => item.index === correctIndex)
                 );
+                 // Ensure correct answers are sorted for easier comparison later
+                 q.correct.sort((a,b)=> a-b);
             });
+            currentQuizQuestions = questionsToShuffle; // Assign the shuffled questions
+            // --- End shuffle logic ---
+
 
             currentQuestionIndex = 0;
             userAnswers = {};
@@ -475,9 +524,9 @@ Based on this, provide a brief, encouraging paragraph summarizing their performa
                 endQuiz();
                 return;
             }
-            
+
             feedbackSection.classList.add('hidden');
-            optionsContainerEl.classList.remove('disabled-options');
+            optionsContainerEl.classList.remove('disabled-options'); // Ensure options are enabled
             multiAnswerControls.classList.add('hidden');
 
 
@@ -497,7 +546,7 @@ Based on this, provide a brief, encouraging paragraph summarizing their performa
             question.options.forEach((option, index) => {
                 const optionId = `q${currentQuestionIndex}_option${index}`;
                 const optionEl = document.createElement('div');
-                optionEl.className = 'quiz-option';
+                optionEl.className = 'quiz-option'; // Apply to the container div
                 optionEl.innerHTML = `
                     <input type="${inputType}" name="question${currentQuestionIndex}" id="${optionId}" value="${index}" class="hidden">
                     <label for="${optionId}" class="block border-2 border-slate-300 rounded-lg p-4 cursor-pointer text-slate-700 font-medium">
@@ -505,42 +554,49 @@ Based on this, provide a brief, encouraging paragraph summarizing their performa
                     </label>
                 `;
                 const inputEl = optionEl.querySelector('input');
+                 // Only add the 'change' listener for single-choice questions
                 if (question.type === 'single') {
                     inputEl.addEventListener('change', handleSingleAnswer);
                 }
                 optionsContainerEl.appendChild(optionEl);
             });
 
+             // Show the 'Check Answer' button only for multiple-choice questions
             if (question.type === 'multiple') {
                 multiAnswerControls.classList.remove('hidden');
             }
         }
 
-        function handleSingleAnswer() {
+        function handleSingleAnswer(event) {
+            // Prevent double-triggering if already disabled
+             if (optionsContainerEl.classList.contains('disabled-options')) return;
+
+             // Ensure the event target is the input itself
+             if (event.target.type !== 'radio') return;
+
             saveAnswer();
-            optionsContainerEl.classList.add('disabled-options');
+            optionsContainerEl.classList.add('disabled-options'); // Disable options AFTER selection
             const question = currentQuizQuestions[currentQuestionIndex];
-            const correctAnswers = question.correct;
+            const correctAnswers = question.correct; // Already sorted
             const selectedAnswer = userAnswers[currentQuestionIndex] ? userAnswers[currentQuestionIndex][0] : -1;
             const isCorrect = correctAnswers.includes(selectedAnswer);
 
             const selectedLabel = document.querySelector(`label[for="q${currentQuestionIndex}_option${selectedAnswer}"]`);
-            
+
             if (isCorrect) {
                 feedbackText.textContent = "Correct!";
                 feedbackText.className = "text-2xl font-bold mb-4 text-green-600";
+                if (selectedLabel) selectedLabel.classList.add('correct-answer'); // Highlight only the selected correct one
             } else {
                 feedbackText.textContent = "Incorrect!";
                 feedbackText.className = "text-2xl font-bold mb-4 text-red-600";
-                if(selectedLabel) selectedLabel.classList.add('incorrect-answer');
+                if (selectedLabel) selectedLabel.classList.add('incorrect-answer');
+                 // Highlight the actual correct answer(s) in green
+                correctAnswers.forEach(correctIndex => {
+                     const correctLabel = document.querySelector(`label[for="q${currentQuestionIndex}_option${correctIndex}"]`);
+                     if (correctLabel) correctLabel.classList.add('correct-answer');
+                 });
             }
-
-            // Highlight all correct answers
-            correctAnswers.forEach(correctIndex => {
-                 const correctLabel = document.querySelector(`label[for="q${currentQuestionIndex}_option${correctIndex}"]`);
-                 if(correctLabel) correctLabel.classList.add('correct-answer');
-            });
-
 
             if (currentQuestionIndex === currentQuizQuestions.length - 1) {
                 nextBtn.textContent = 'Finish Quiz';
@@ -551,15 +607,16 @@ Based on this, provide a brief, encouraging paragraph summarizing their performa
             feedbackSection.classList.remove('hidden');
         }
 
+
         function handleMultipleAnswer() {
             saveAnswer();
             optionsContainerEl.classList.add('disabled-options');
             multiAnswerControls.classList.add('hidden');
 
             const question = currentQuizQuestions[currentQuestionIndex];
-            const correctAnswers = [...question.correct].sort();
+            const correctAnswers = question.correct; // Already sorted during shuffle
             const selectedAnswers = userAnswers[currentQuestionIndex] ? [...userAnswers[currentQuestionIndex]].sort() : [];
-            
+
             const isCorrect = JSON.stringify(correctAnswers) === JSON.stringify(selectedAnswers);
 
             if (isCorrect) {
@@ -568,21 +625,24 @@ Based on this, provide a brief, encouraging paragraph summarizing their performa
             } else {
                 feedbackText.textContent = "Incorrect!";
                 feedbackText.className = "text-2xl font-bold mb-4 text-red-600";
-                
+
+                // Highlight incorrectly selected options in red
                 question.options.forEach((opt, index) => {
                     const label = document.querySelector(`label[for="q${currentQuestionIndex}_option${index}"]`);
                     const wasSelected = selectedAnswers.includes(index);
                     const isCorrectOption = correctAnswers.includes(index);
                     if (wasSelected && !isCorrectOption) {
-                        label.classList.add('incorrect-answer');
+                       if (label) label.classList.add('incorrect-answer');
                     }
                 });
             }
 
+             // Highlight all correct answers in green regardless
             correctAnswers.forEach(correctIndex => {
                  const correctLabel = document.querySelector(`label[for="q${currentQuestionIndex}_option${correctIndex}"]`);
                  if(correctLabel) correctLabel.classList.add('correct-answer');
             });
+
 
             if (currentQuestionIndex === currentQuizQuestions.length - 1) {
                 nextBtn.textContent = 'Finish Quiz';
@@ -591,7 +651,7 @@ Based on this, provide a brief, encouraging paragraph summarizing their performa
             }
             feedbackSection.classList.remove('hidden');
         }
-        
+
         function saveAnswer() {
             const question = currentQuizQuestions[currentQuestionIndex];
             if (question.type === 'single') {
@@ -599,14 +659,14 @@ Based on this, provide a brief, encouraging paragraph summarizing their performa
                 if (selectedOption) {
                     userAnswers[currentQuestionIndex] = [parseInt(selectedOption.value)];
                 } else {
-                     userAnswers[currentQuestionIndex] = [];
+                     userAnswers[currentQuestionIndex] = []; // No answer selected
                 }
             } else {
                 const selectedOptions = document.querySelectorAll(`input[name="question${currentQuestionIndex}"]:checked`);
                 userAnswers[currentQuestionIndex] = Array.from(selectedOptions).map(el => parseInt(el.value));
             }
         }
-        
+
         function startTimer(durationInMinutes) {
             let time = durationInMinutes * 60;
             if(timerInterval) clearInterval(timerInterval);
@@ -618,7 +678,7 @@ Based on this, provide a brief, encouraging paragraph summarizing their performa
                 seconds = seconds < 10 ? '0' + seconds : seconds;
                 timerEl.textContent = `${minutes}:${seconds}`;
             };
-            
+
             updateTimerDisplay(); // Show initial time
 
             timerInterval = setInterval(() => {
@@ -627,28 +687,39 @@ Based on this, provide a brief, encouraging paragraph summarizing their performa
 
                 if (time < 0) {
                     clearInterval(timerInterval);
-                    endQuiz();
+                    endQuiz(); // End quiz when timer runs out
                 }
             }, 1000);
         }
 
         function endQuiz() {
-            clearInterval(timerInterval);
-            
+             // If timer is still running, clear it
+            if(timerInterval) clearInterval(timerInterval);
+
+            // Save the answer for the very last question if feedback wasn't shown yet
+             if (!feedbackSection.classList.contains('hidden')) {
+                 // Feedback was shown, answer already saved
+             } else if (currentQuestionIndex < currentQuizQuestions.length) {
+                  // Timer ran out before last question answered/checked
+                 saveAnswer();
+             }
+
+
             let score = 0;
             incorrectQuestions = [];
             for (let i = 0; i < currentQuizQuestions.length; i++) {
                 const question = currentQuizQuestions[i];
+                 // If the quiz ended prematurely (timer), some answers might be undefined
                 const answers = userAnswers[i] || [];
-                const correctAnswers = question.correct;
-                
+                const correctAnswers = question.correct; // Already sorted
+
                 const sortedAnswers = [...answers].sort();
-                const sortedCorrectAnswers = [...correctAnswers].sort();
-                
-                if (JSON.stringify(sortedAnswers) === JSON.stringify(sortedCorrectAnswers)) {
+                // No need to sort correctAnswers again if done during shuffle
+
+                if (JSON.stringify(sortedAnswers) === JSON.stringify(correctAnswers)) {
                     score++;
                 } else {
-                    const incorrectQ = {...question};
+                    const incorrectQ = JSON.parse(JSON.stringify(question)); // Deep copy
                     incorrectQ.userAnswer = answers;
                     incorrectQuestions.push(incorrectQ);
                 }
@@ -657,24 +728,23 @@ Based on this, provide a brief, encouraging paragraph summarizing their performa
             userAnswers.score = score; // Store score for AI analysis
             scoreEl.textContent = score;
             resultTotalQuestionsEl.textContent = currentQuizQuestions.length;
-            const percentage = ((score / currentQuizQuestions.length) * 100).toFixed(1);
+            const percentage = currentQuizQuestions.length > 0 ? ((score / currentQuizQuestions.length) * 100).toFixed(1) : 0;
             scorePercentageEl.textContent = `${percentage}% Correct`;
 
             quizScreen.classList.add('hidden');
             resultScreen.classList.remove('hidden');
-            
+
             // Reset AI feedback button
             aiFeedbackContainer.classList.add('hidden');
             aiFeedbackContainer.innerHTML = '';
             aiFeedbackBtn.disabled = false;
             feedbackBtnText.textContent = 'Get AI Feedback ✨';
         }
-        
+
         // --- Initialize the App ---
         initialize();
 
     </script>
 </body>
 </html>
-
 

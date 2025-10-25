@@ -82,7 +82,11 @@
                  <button id="back-to-home-btn" class="text-blue-600 hover:text-blue-800 font-semibold">&larr; Back to Menu</button>
             </div>
             <div class="flex justify-between items-center mb-6 border-b pb-4">
-                <h2 id="quiz-title" class="text-2xl font-bold">Question <span id="question-number"></span> of <span id="total-questions"></span></h2>
+                <div>
+                     <h2 id="quiz-title" class="text-2xl font-bold">Question <span id="question-number"></span> of <span id="total-questions"></span></h2>
+                     <!-- ** NEW ELEMENT ** -->
+                     <span id="questions-remaining" class="text-sm text-slate-500 font-medium"></span>
+                </div>
                 <div id="timer" class="text-xl font-semibold bg-red-100 text-red-700 px-4 py-2 rounded-lg">--:--</div>
             </div>
             <div id="question-card">
@@ -285,6 +289,7 @@
         const timerEl = document.getElementById('timer');
         const questionNumberEl = document.getElementById('question-number');
         const totalQuestionsEl = document.getElementById('total-questions');
+        const questionsRemainingEl = document.getElementById('questions-remaining'); // ** NEW ELEMENT REFERENCE **
         const questionTextEl = document.getElementById('question-text');
         const optionsContainerEl = document.getElementById('options-container');
         const scoreEl = document.getElementById('score');
@@ -539,6 +544,10 @@ Based on this, provide a brief, encouraging paragraph summarizing their performa
             hintContainer.textContent = '';
             hintBtn.disabled = false;
             hintBtnText.textContent = 'Get a Hint ✨';
+
+            // ** UPDATE REMAINING QUESTIONS **
+            const questionsLeft = currentQuizQuestions.length - currentQuestionIndex -1;
+            questionsRemainingEl.textContent = `(${questionsLeft} questions remaining)`;
 
 
             const inputType = question.type === 'single' ? 'radio' : 'checkbox';

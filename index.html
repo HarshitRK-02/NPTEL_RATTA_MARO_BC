@@ -484,7 +484,7 @@ Based on this, provide a brief, encouraging paragraph summarizing their performa
                 currentQuizQuestions = Object.values(weeklyQuestions).flat();
                 quizTitleEl.textContent = 'Final Test';
                 resultTitleEl.textContent = 'Final Test Complete!';
-                durationMinutes = 30; // 30 minutes for the final test
+                durationMinutes = 50; // 30 minutes for the final test
             } else {
                 const weekNum = parseInt(quizType.replace('week', ''));
                 currentQuizQuestions = weeklyQuestions[quizType];
@@ -756,4 +756,5 @@ Based on this, provide a brief, encouraging paragraph summarizing their performa
     </script>
 </body>
 </html>
+
 
